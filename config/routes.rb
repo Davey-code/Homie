@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  devise_for :users
+  as :user do
+    get "signin" => 'devise/sessions#new'
+    delete "signout" => 'devise/sessions#destroy'
+    get "signup" => 'devise/registrations#new'
+  end
+
   root 'welcome#index'
 
   resources :articles
@@ -6,7 +13,7 @@ Rails.application.routes.draw do
   get 'about' => 'welcome#about'
   get 'contacts' => 'welcome#contacts'
   
-  # root 'welcome#index'
+  
   
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
